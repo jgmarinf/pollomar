@@ -1,5 +1,5 @@
 import React from 'react'
-import pollo from "../assets/imagenPollo.png"
+import pollo from "../imagenes/imagenPollo.png"
 
 
 function Heder() {
