@@ -79,6 +79,7 @@ import	img73	from	"../imagenes/65.png"
 import	img74	from	"../imagenes/67.PNG"
 import	img75	from	"../imagenes/68.PNG"
 import	img76	from	"../imagenes/91.PNG"
+import { useState, ChangeEvent } from 'react';
 
 
 
@@ -164,20 +165,97 @@ const datos= [
 ]
 
 function Productos () {
+
+	const [currentPage, setcurrentPage] = useState(0);
+	
+	const [search, setSearch] = useState("");
+
+	const filteredProductos =() : dato[] => {
+		if( search.length === 0)
+			return datos.slice(currentPage, currentPage + 10);
+
+
+		const filtere = datos.filter( 
+			dat => dat.grupo.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,"").includes(search));
+				return filtere.slice(currentPage, currentPage + 10);
+	}
+
+	const prevPage = () => {
+		if ( currentPage > 0)
+		setcurrentPage ( currentPage - 10);
+	}
+
+
+	const netxPage = () => {
+		if ( datos.filter( dat => dat.grupo.includes(search) ).length > currentPage +10 )
+			setcurrentPage ( currentPage + 10);
+	}
+
+	const onSearchChange = ({ target }: ChangeEvent<HTMLInputElement> ) => {
+		setcurrentPage(0);
+		setSearch( target.value );
+	}
+
+
     return (
-        <div className="container" id= "container">            
-            <div className="row">
-                {
-                    datos.map(dato =>(
-                        <div key={dato.id}>
-                            <Producto name={dato.name} costo={dato.cost_und} imagen={dato.imagen_URL}/>
-							<br/>
-                        </div>
-                    ))
-                }
-				
-            </div>      
-        </div>
+		<><div className="container ">
+			<div className="input-group mb-3">
+				<input
+					id="formulario"
+					type="text"
+					className="form-control"
+					placeholder="Encuentrame mas rapido..."
+					value = { search }
+					onChange = {onSearchChange}
+					/>
+
+				<button className="btn btn-outline-secondary"
+					type="button"
+					id="button-addon2">Buscar</button>
+			</div>
+			<p>
+				si creas un usuario sera mas facil realizar el pedido tendras la direccion guardada
+				y no te tardara mucho pero si no quieres tamnbien puedes hacer el pedido
+				directamente sin usuario
+			</p>
+			&nbsp;
+			<div>
+				<button className='btn btn-primary' 
+				onClick={prevPage}> 
+					anteriores
+				</button>
+				&nbsp;
+				<button className='btn btn-primary' 
+				onClick={netxPage}> 
+					siguientes
+				</button>
+			</div>
+		</div>
+
+		<div className="container" id="container">
+				<div className="row">
+					{filteredProductos().map(dato => (
+						<div key={dato.id}>
+							<Producto name={dato.name} costo={dato.cost_und} imagen={dato.imagen_URL} grupo={dato.grupo}/>
+							<br />
+						</div>
+					))}
+
+				</div>
+			</div>
+			&nbsp;
+			{/* <div id="pieDePagina">
+				<button className='btn btn-primary' 
+				onClick={prevPage}> 
+					anteriores
+				</button>
+				&nbsp;
+				<button className='btn btn-primary' 
+				onClick={netxPage}> 
+					siguientes
+				</button>
+			</div> */}
+			</>
     )
 }
 

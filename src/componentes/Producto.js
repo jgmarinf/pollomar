@@ -1,7 +1,9 @@
 import React from 'react'
 import '../App.css';
 
-
+const botonDeMas = ()=> {
+    
+}
 
 function Producto ({name, costo, imagen}) {
     return (           
@@ -10,15 +12,16 @@ function Producto ({name, costo, imagen}) {
                     <div className="col-2 overflow">
                         <img className="card-img-top" src={imagen} alt=""/>
                     </div>
-                    <div className="col-8">
+                    <div className="col-8" id="name">
                         {name}
                     </div>
-                    <div className="col-2">
+                    <div className="col-2" id="costoYconteo">
                         <div id="costo" className="col-2">
                             {costo}
                         </div>
-                        <div>
-                        <button className="btn btn-outline-secondary" type="button" id="button-addon2">agregar</button>
+                        <div id>
+                        <button className="btn btn-outline-secondary" type="button" id="masYmenos"> + </button>
+                        <button className="btn btn-outline-secondary" type="button" id="masYmenos"> − </button>
                         </div>
                     </div>
                 </div>   
