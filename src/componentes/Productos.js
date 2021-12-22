@@ -176,7 +176,7 @@ function Productos () {
 
 
 		const filtere = datos.filter( 
-			dat => dat.grupo.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,"").includes(search));
+			dat => dat.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,"").includes(search));
 				return filtere.slice(currentPage, currentPage + 10);
 	}
 
@@ -187,7 +187,7 @@ function Productos () {
 
 
 	const netxPage = () => {
-		if ( datos.filter( dat => dat.grupo.includes(search) ).length > currentPage +10 )
+		if ( datos.filter( dat => dat.name.includes(search) ).length > currentPage +10 )
 			setcurrentPage ( currentPage + 10);
 	}
 

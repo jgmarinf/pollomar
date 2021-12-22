@@ -8,6 +8,9 @@ function Inicio() {
         <div>
             <Heder/>
             <Productos/>
+            <a href=''>
+                <i className="fas fa-shopping-cart"></i>
+            </a>
         </div>
     )
 }

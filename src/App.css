@@ -93,6 +93,28 @@
 
 }
 
+.fas {
+    position: fixed;
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    bottom: 30px;
+    right: 30px;
+    background: rgb(190,0,36);
+    border-radius: 50px;
+    color: #fff;
+    text-align: center;
+    font-size: 22px;
+    box-shadow: 0px 1px 10px rgba(0,0, 0, 0.3);
+    z-index: 100;
+}
+
+.fas:hover{
+    text-decoration: none;
+    color: rgb(190,0,36);
+    background: #f7941d;
+}
+
 #pieDePagina {
         
 }
